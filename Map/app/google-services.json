@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "81018585075",
+    "project_id": "mapjoydev",
+    "storage_bucket": "mapjoydev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81018585075:android:99abad5870a83b5db35c86",
+        "android_client_info": {
+          "package_name": "com.joydev.map"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81018585075-1qnt53upcjcke1qi38fh4gjfcv7jprm8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfVr59QvvtzzCV4hcaEkezC_e6juclulc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81018585075-1qnt53upcjcke1qi38fh4gjfcv7jprm8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
