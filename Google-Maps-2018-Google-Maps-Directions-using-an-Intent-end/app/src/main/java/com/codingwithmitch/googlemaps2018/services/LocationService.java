@@ -118,7 +118,7 @@ public class LocationService extends Service {
                         }
                     }
                 },
-                Looper.myLooper()); // Looper.myLooper tells this to repeat forever until thread is destroyed
+                Looper.myLooper());
     }
 
     private void saveUserLocation(final UserLocation userLocation){
@@ -142,6 +142,7 @@ public class LocationService extends Service {
             Log.e(TAG, "saveUserLocation: User instance is null, stopping location service.");
             Log.e(TAG, "saveUserLocation: NullPointerException: "  + e.getMessage() );
             stopSelf();
+
         }
 
     }

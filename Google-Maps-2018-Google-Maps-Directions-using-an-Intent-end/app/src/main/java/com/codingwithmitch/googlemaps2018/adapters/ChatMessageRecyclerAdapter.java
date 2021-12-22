@@ -1,6 +1,7 @@
 package com.codingwithmitch.googlemaps2018.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -45,14 +46,16 @@ public class ChatMessageRecyclerAdapter extends RecyclerView.Adapter<ChatMessage
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        if(FirebaseAuth.getInstance().getUid().equals(mMessages.get(position).getUser().getUser_id())){
+
+        final FirebaseUser fireBaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(fireBaseUser != null && fireBaseUser.getUid().equals(mMessages.get(position).getUser().getUser_id())){
             ((ViewHolder)holder).username.setTextColor(ContextCompat.getColor(mContext, R.color.green1));
         }
         else{
             ((ViewHolder)holder).username.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
         }
 
-        final FirebaseUser fireBaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (fireBaseUser != null && fireBaseUser.getEmail().equals(mMessages.get(position).getUser().getEmail()))
         {
             ((ViewHolder)holder).username.setGravity(Gravity.RIGHT);
@@ -67,8 +70,6 @@ public class ChatMessageRecyclerAdapter extends RecyclerView.Adapter<ChatMessage
         ((ViewHolder)holder).username.setText(mMessages.get(position).getUser().getUsername());
         ((ViewHolder)holder).message.setText(mMessages.get(position).getMessage());
     }
-
-
 
     @Override
     public int getItemCount() {
