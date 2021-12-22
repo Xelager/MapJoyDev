@@ -280,7 +280,7 @@ public class ChatroomActivity extends AppCompatActivity implements
                 .document(FirebaseAuth.getInstance().getUid());
 
         User user = ((UserClient)(getApplicationContext())).getUser();
-        joinChatroomRef.set(user); // Don't care about listening for completion.
+        joinChatroomRef.set(user);
     }
 
     private void setChatroomName(){

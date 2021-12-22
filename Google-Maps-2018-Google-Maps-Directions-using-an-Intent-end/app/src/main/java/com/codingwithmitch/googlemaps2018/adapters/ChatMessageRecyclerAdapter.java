@@ -1,9 +1,13 @@
 package com.codingwithmitch.googlemaps2018.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,7 @@ import com.codingwithmitch.googlemaps2018.R;
 import com.codingwithmitch.googlemaps2018.models.ChatMessage;
 import com.codingwithmitch.googlemaps2018.models.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -40,13 +45,23 @@ public class ChatMessageRecyclerAdapter extends RecyclerView.Adapter<ChatMessage
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-
-
         if(FirebaseAuth.getInstance().getUid().equals(mMessages.get(position).getUser().getUser_id())){
             ((ViewHolder)holder).username.setTextColor(ContextCompat.getColor(mContext, R.color.green1));
         }
         else{
             ((ViewHolder)holder).username.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
+        }
+
+        final FirebaseUser fireBaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (fireBaseUser != null && fireBaseUser.getEmail().equals(mMessages.get(position).getUser().getEmail()))
+        {
+            ((ViewHolder)holder).username.setGravity(Gravity.RIGHT);
+            ((ViewHolder)holder).message.setGravity(Gravity.RIGHT);
+        }
+        else
+        {
+            ((ViewHolder)holder).username.setGravity(Gravity.LEFT);
+            ((ViewHolder)holder).message.setGravity(Gravity.LEFT);
         }
 
         ((ViewHolder)holder).username.setText(mMessages.get(position).getUser().getUsername());
