@@ -463,7 +463,11 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void signOut(){
-        FirebaseAuth.getInstance().signOut();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+        if(mChatroomEventListener != null){
+            mChatroomEventListener.remove();
+        }
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -479,19 +483,15 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.action_sign_out:{
-                signOut();
-                return true;
-            }
-            case R.id.action_profile:{
-                startActivity(new Intent(this, ProfileActivity.class));
-                return true;
-            }
-            default:{
-                return super.onOptionsItemSelected(item);
-            }
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_sign_out) {
+            signOut();
+            return true;
+        } else if (itemId == R.id.action_profile) {
+            startActivity(new Intent(this, ProfileActivity.class));
+            return true;
         }
+        return super.onOptionsItemSelected(item);
 
     }
 
